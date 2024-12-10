@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="static/css/styles.css">
+    <link rel="stylesheet" type="text/css" href="static/css/index.css">
+    <link rel="icon" href="static/img/icon.png" type="image/x-icon">
+    <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js">
+    </script>
+    <title>Dữ liệu Cổ phiếu</title>
+</head>
+<body>
+    <div class="logo">
+        <p><a href="{{ url_for('main.home') }}">
+            <img src="static/img/favicon.png" alt="Logo">
+        </a></p>
+    </div>
+    <div class="theme-toggle">
+        <i class="fas fa-moon"></i>
+    </div>
+    <div class="menu-toggle">
+        <i class="fas fa-bars"></i>
+    </div>
+    <div class="menu">
+        <div class="sub-menu">
+            <ul><a href="{{ url_for('main.home') }}"><i class="fas fa-home"></i></a></ul>
+            <ul><a href="{{ url_for('main.phantich') }}">PHÂN TÍCH</a></ul>
+            <ul><a href="{{ url_for('main.dudoan') }}">DỰ ĐOÁN</a></ul>
+            <div id="clock" class="clock"></div>
+        </div>
+    </div>
+    <div class="main">
+        <div class="sidebar">
+            <h2>Mục lục</h2>
+            <ul>
+                <li><a href="#section1">Giới Thiệu Chung</a></li>
+                <li><a href="#section2">Mục Tiêu và Ý Nghĩa</a></li>
+                <li><a href="#section3">Phương Pháp Tính Toán</a></li>
+                <li><a href="#section4">Lịch Sử và Phát Triển</a></li>
+                <li><a href="#section5">Thành Phần Của VN30</a></li>
+                <li><a href="#section6">So Sánh VN30 Với Các Chỉ Số Khác</a></li>
+                <li><a href="#section7">Tác Động của VN30 Đến Thị Trường</a></li>
+                <li><a href="#section8">Các Sản Phẩm Đầu Tư Liên Quan Đến VN30</a></li>
+                <li><a href="#section9">Phân Tích Hiệu Suất</a></li>
+                <li><a href="#section10">Ảnh Hưởng Của Các Yếu Tố Kinh Tế và Chính Trị</a></li>
+                <li><a href="#section11">Chiến Lược Đầu Tư Sử Dụng VN30</a></li>
+                <li><a href="#section12">Rủi Ro Liên Quan Đến VN30</a></li>
+                <li><a href="#section13">Tương Lai Của VN30</a></li>
+                <li><a href="#section14">Kết Luận</a></li>
+            </ul>
+        </div>
+        <div class="main-content">
+            <div class="container">
+                <h1>Thông tin về VN30</h1>
+
+                <img src="static/img/VN30.jpg" alt="Mô tả về ảnh" width="100%" height="400" style="border-radius: 6px;
+                box-shadow: 0 6px 15px rgba(226, 206, 206, 0.1);">
+
+                <h2 id="section1">Giới Thiệu Chung</h2>
+                <p>VN30 là một trong những chỉ số chứng khoán quan trọng nhất tại Việt Nam, 
+                    đại diện cho 30 cổ phiếu có vốn hóa lớn nhất và thanh khoản cao nhất trên Sở Giao dịch Chứng khoán Thành phố Hồ Chí Minh (HOSE). 
+                    Chỉ số này được quản lý bởi Công ty Cổ phần Chỉ số Việt Nam (VNX Index), 
+                    thuộc sở hữu của Sở Giao dịch Chứng khoán Thành phố Hồ Chí Minh (HOSE). 
+                    VN30 thường được coi là thước đo chính cho hiệu suất của thị trường chứng khoán Việt Nam và là điểm tham chiếu quan trọng cho các nhà đầu tư trong nước và quốc tế.</p>
+
+                <h2 id="section2">Mục Tiêu và Ý Nghĩa</h2>
+                <h3>Đánh Giá Thị Trường</h3>
+                <p>VN30 cung cấp một cái nhìn tổng quan về sức khỏe và xu hướng của thị trường chứng khoán Việt Nam thông qua việc phản ánh biến động giá của 30 cổ phiếu hàng đầu. 
+                    Điều này giúp các nhà đầu tư nhanh chóng đánh giá tình hình thị trường mà không cần theo dõi từng cổ phiếu riêng lẻ.</p>
+
+                <h3>Đầu Tư và Quản Lý Rủi Ro</h3>
+                <p>VN30 không chỉ là một chỉ số để theo dõi thị trường mà còn là cơ sở cho nhiều sản phẩm tài chính như quỹ ETF, quỹ đầu tư chỉ số, và các hợp đồng tương lai. 
+                    Những sản phẩm này cho phép nhà đầu tư tiếp cận thị trường chứng khoán Việt Nam một cách dễ dàng và hiệu quả, đồng thời giúp quản lý rủi ro thông qua đa dạng hóa danh mục đầu tư.</p>
+
+                <h3>Thước Đo Hiệu Suất</h3>
+                <p>Đối với các quỹ đầu tư và các nhà quản lý danh mục đầu tư, VN30 thường được sử dụng như một benchmark để so sánh hiệu suất của danh mục đầu tư. 
+                    Nếu danh mục đầu tư vượt qua VN30, điều đó thường được coi là một dấu hiệu tích cực về khả năng quản lý và lựa chọn cổ phiếu của nhà quản lý.</p>
+                    
+                <h2 id="section3">Phương Pháp Tính Toán</h2>
+                <h3>Tiêu Chí Lựa Chọn Cổ Phiếu</h3>
+                <p>Để được lựa chọn vào VN30, cổ phiếu phải đáp ứng một số tiêu chí nhất định, bao gồm:</p>
+                <p>1. Vốn Hóa Thị Trường: Cổ phiếu phải có vốn hóa lớn, thường là trong top 30 của thị trường.</p>
+                <p>2. Thanh Khoản: Cổ phiếu phải có mức độ thanh khoản cao, được giao dịch thường xuyên và có khối lượng giao dịch lớn.</p>
+                <p>3. Tuân Thủ Quy Định: Cổ phiếu phải tuân thủ các quy định về báo cáo tài chính, minh bạch thông tin và tuân thủ các quy tắc của HOSE.</p>
+                
+                <h3>Cách Tính Toán</h3>
+                <p>VN30 được tính toán dựa trên phương pháp tính giá trị vốn hóa điều chỉnh theo tỷ trọng của từng cổ phiếu trong danh mục. Cụ thể:</p>
+                <p>1. Vốn Hóa Điều Chỉnh: Tính toán vốn hóa thị trường của mỗi cổ phiếu sau khi điều chỉnh theo số lượng cổ phiếu lưu hành.</p>
+                <p>2. Tỷ Trọng Cổ Phiếu: Xác định tỷ trọng của mỗi cổ phiếu trong chỉ số dựa trên vốn hóa thị trường điều chỉnh.</p>
+                <p>3. Công Thức Tính: Tổng hợp các tỷ trọng của 30 cổ phiếu để xác định giá trị của VN30.</p>
+                <p>Công thức chung:</p>
+                \[
+                VN30 = \sum_{i=1}^{30} \left( \frac{\text{Vốn hóa điều chỉnh của cổ phiếu } i}{\text{Tổng vốn hóa điều chỉnh của 30 cổ phiếu}} \right) \times 1000
+                \]
+                
+                <h3>Tần Suất Cập Nhật</h3>
+                <p>VN30 được cập nhật liên tục trong suốt phiên giao dịch, phản ánh những biến động ngay lập tức của giá cổ phiếu. 
+                    Ngoài ra, danh mục VN30 có thể được điều chỉnh định kỳ (thường hàng quý) để đảm bảo rằng nó luôn phản ánh đúng các cổ phiếu hàng đầu về vốn hóa và thanh khoản.</p>
+
+                <h2 id="section4">Lịch Sử và Phát Triển</h2>
+                <h3>Sự Ra Đời</h3>
+                <p>VN30 được thành lập nhằm cung cấp một chỉ số đại diện cho các công ty lớn nhất và có ảnh hưởng nhất trên thị trường chứng khoán Việt Nam. 
+                    Kể từ khi ra đời, VN30 đã trở thành một trong những chỉ số được theo dõi nhiều nhất và là chuẩn mực cho các nhà đầu tư trong nước và quốc tế.</p>
+                
+                <h3>Những Thay Đổi Quan Trọng</h3>
+                <p>Qua các năm, danh mục VN30 đã trải qua nhiều lần điều chỉnh để phản ánh sự thay đổi trong thị trường chứng khoán. 
+                    Sự xuất hiện của các công ty mới, sự sụt giảm của các công ty cũ, và biến động trong vốn hóa thị trường đều ảnh hưởng đến việc cấu thành danh mục VN30.</p>
+                
+                <h3>Thành Tích</h3>
+                <p>VN30 đã chứng kiến nhiều giai đoạn tăng trưởng mạnh mẽ cùng với sự phát triển kinh tế của Việt Nam. 
+                    Trong những năm gần đây, chỉ số này đã thu hút sự quan tâm từ các nhà đầu tư quốc tế nhờ vào tiềm năng tăng trưởng cao và môi trường đầu tư ngày càng được cải thiện.</p>
+                
+                    <h2 id="section5">Thành Phần Của VN30</h2>
+                    <h3>Danh Sách Cập Nhật</h3>
+                    <p>VN30 bao gồm 30 cổ phiếu thuộc nhiều ngành công nghiệp khác nhau, phản ánh cấu trúc kinh tế đa dạng của Việt Nam. Danh sách này được cập nhật định kỳ để đảm bảo tính đại diện và thanh khoản cao.</p>
+                
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>Mã Chứng Khoán</th>
+                                <th>Tên Doanh Nghiệp</th>
+                                <th>Ngành</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>ACB</td>
+                                <td>Ngân hàng Á Châu</td>
+                                <td>Tài chính</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>BCM</td>
+                                <td>Tổng Công ty Đầu tư và Phát triển Công nghiệp</td>
+                                <td>Bất động sản</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>BID</td>
+                                <td>Ngân hàng Đầu tư và Phát triển Việt Nam</td>
+                                <td>Tài chính</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>BVH</td>
+                                <td>Tập đoàn Bảo Việt</td>
+                                <td>Tài chính</td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>CTG</td>
+                                <td>Ngân hàng Công Thương Việt Nam</td>
+                                <td>Tài chính</td>
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td>FPT</td>
+                                <td>Công ty Cổ phần FPT</td>
+                                <td>Công nghệ</td>
+                            </tr>
+                            <tr>
+                                <td>7</td>
+                                <td>GAS</td>
+                                <td>Tổng Công ty Khí Việt Nam - CTCP</td>
+                                <td>Năng lượng</td>
+                            </tr>
+                            <tr>
+                                <td>8</td>
+                                <td>GVR</td>
+                                <td>Tập đoàn Công nghiệp Cao su Việt Nam</td>
+                                <td>Công nghiệp</td>
+                            </tr>
+                            <tr>
+                                <td>9</td>
+                                <td>HDB</td>
+                                <td>Ngân hàng Phát triển TP.HCM</td>
+                                <td>Tài chính</td>
+                            </tr>
+                            <tr>
+                                <td>10</td>
+                                <td>HPG</td>
+                                <td>Tập đoàn Hòa Phát</td>
+                                <td>Công nghiệp</td>
+                            </tr>
+                            <tr>
+                                <td>11</td>
+                                <td>MBB</td>
+                                <td>Ngân hàng Quân Đội</td>
+                                <td>Tài chính</td>
+                            </tr>
+                            <tr>
+                                <td>12</td>
+                                <td>MSN</td>
+                                <td>Tập đoàn Masan</td>
+                                <td>Hàng tiêu dùng</td>
+                            </tr>
+                            <tr>
+                                <td>13</td>
+                                <td>MWG</td>
+                                <td>Công ty Cổ phần Thế Giới Di Động</td>
+                                <td>Bán lẻ</td>
+                            </tr>
+                            <tr>
+                                <td>14</td>
+                                <td>PLX</td>
+                                <td>Tập đoàn Xăng dầu Việt Nam</td>
+                                <td>Năng lượng</td>
+                            </tr>
+                            <tr>
+                                <td>15</td>
+                                <td>POW</td>
+                                <td>Tổng Công ty Điện lực Dầu khí Việt Nam</td>
+                                <td>Năng lượng</td>
+                            </tr>
+                            <tr>
+                                <td>16</td>
+                                <td>SAB</td>
+                                <td>Tổng Công ty Bia - Rượu - Nước giải khát Sài Gòn</td>
+                                <td>Hàng tiêu dùng</td>
+                            </tr>
+                            <tr>
+                                <td>17</td>
+                                <td>SHB</td>
+                                <td>Ngân hàng Sài Gòn - Hà Nội</td>
+                                <td>Tài chính</td>
+                            </tr>
+                            <tr>
+                                <td>18</td>
+                                <td>SSB</td>
+                                <td>Ngân hàng TMCP Đông Nam Á (SeABank)</td>
+                                <td>Tài chính</td>
+                            </tr>
+                            <tr>
+                                <td>19</td>
+                                <td>SSI</td>
+                                <td>Công ty Chứng khoán SSI</td>
+                                <td>Tài chính</td>
+                            </tr>
+                            <tr>
+                                <td>20</td>
+                                <td>STB</td>
+                                <td>Ngân hàng Sài Gòn Thương Tín (Sacombank)</td>
+                                <td>Tài chính</td>
+                            </tr>
+                            <tr>
+                                <td>21</td>
+                                <td>TCB</td>
+                                <td>Ngân hàng TMCP Kỹ Thương Việt Nam (Techcombank)</td>
+                                <td>Tài chính</td>
+                            </tr>
+                            <tr>
+                                <td>22</td>
+                                <td>TPB</td>
+                                <td>Ngân hàng Tiên Phong</td>
+                                <td>Tài chính</td>
+                            </tr>
+                            <tr>
+                                <td>23</td>
+                                <td>VCB</td>
+                                <td>Ngân hàng Ngoại Thương Việt Nam</td>
+                                <td>Tài chính</td>
+                            </tr>
+                            <tr>
+                                <td>24</td>
+                                <td>VHM</td>
+                                <td>Công ty Cổ phần Vinhomes</td>
+                                <td>Bất động sản</td>
+                            </tr>
+                            <tr>
+                                <td>25</td>
+                                <td>VIB</td>
+                                <td>Ngân hàng Quốc tế Việt Nam</td>
+                                <td>Tài chính</td>
+                            </tr>
+                            <tr>
+                                <td>26</td>
+                                <td>VIC</td>
+                                <td>Tập đoàn Vingroup</td>
+                                <td>Bất động sản</td>
+                            </tr>
+                            <tr>
+                                <td>27</td>
+                                <td>VJC</td>
+                                <td>Công ty Cổ phần Hàng không VietJet</td>
+                                <td>Công nghiệp</td>
+                            </tr>
+                            <tr>
+                                <td>28</td>
+                                <td>VNM</td>
+                                <td>Công ty Cổ phần Sữa Việt Nam (Vinamilk)</td>
+                                <td>Hàng tiêu dùng thiết yếu</td>
+                            </tr>
+                            <tr>
+                                <td>29</td>
+                                <td>VPB</td>
+                                <td>Ngân hàng TMCP Việt Nam Thịnh Vượng (VPBank)</td>
+                                <td>Tài chính</td>
+                            </tr>
+                            <tr>
+                                <td>30</td>
+                                <td>VRE</td>
+                                <td>Công ty Cổ phần Vincom Retail</td>
+                                <td>Bất động sản</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                
+                    <h3>Đa Dạng Hóa Danh Mục</h3>
+                    <p>Sự đa dạng hóa trong danh mục VN30 giúp giảm thiểu rủi ro cho chỉ số bằng cách phân bổ vốn vào nhiều ngành công nghiệp khác nhau. 
+                        Điều này giúp VN30 trở nên ổn định hơn trong các giai đoạn thị trường biến động mạnh.</p>
+                
+                <h2 id="section6">So Sánh VN30 Với Các Chỉ Số Khác</h2>
+                <h3>VNINDEX</h3>
+                <p>VNINDEX là chỉ số tổng hợp của tất cả các cổ phiếu niêm yết trên HOSE, bao gồm cả VN30. 
+                    Trong khi VN30 tập trung vào 30 cổ phiếu lớn nhất, VNINDEX bao quát toàn bộ thị trường, phản ánh sự biến động của hàng nghìn cổ phiếu.</p>
+                
+                <h3>HNX30</h3>
+                <p>HNX30 là chỉ số tương tự VN30 nhưng trên Sở Giao dịch Chứng khoán Hà Nội (HNX). 
+                    Cả VN30 và HNX30 đều là các chỉ số blue-chip, nhưng chúng đại diện cho các công ty niêm yết trên hai sàn giao dịch khác nhau.</p>
+
+                <h3>Upcom và các Chỉ Số Khác</h3>
+                <p>Ngoài VN30 và VNINDEX, còn có các chỉ số khác như Upcom Index, phản ánh thị trường chứng khoán cho các công ty đang trong giai đoạn khởi nghiệp hoặc đang tìm kiếm sự phát triển. 
+                    So với VN30, Upcom thường có mức độ rủi ro cao hơn nhưng cũng tiềm ẩn cơ hội lợi nhuận lớn hơn.</p>
+                
+                <h2 id="section7">Tác Động của VN30 Đến Thị Trường</h2>
+                <h3>Định Hướng Thị Trường</h3>
+                <p>VN30 đóng vai trò quan trọng trong việc định hướng xu hướng thị trường chứng khoán Việt Nam. 
+                    Các nhà đầu tư thường theo dõi VN30 để dự đoán xu hướng và điều chỉnh chiến lược đầu tư của mình.</p>
+                    
+                <h3>Tác Động Đến Giá Cổ Phiếu</h3>
+                <p>Sự biến động của VN30 có thể ảnh hưởng đến tâm lý thị trường và giá cổ phiếu của các công ty nằm trong danh mục. 
+                    Khi VN30 tăng mạnh, điều này thường thúc đẩy sự lạc quan và thúc đẩy giá cổ phiếu; ngược lại, khi VN30 giảm, thị trường có xu hướng trở nên tiêu cực hơn.</p>
+    
+                <h3>Sự Thu Hút Đầu Tư Quốc Tế</h3>
+                <p>VN30 là một trong những chỉ số được theo dõi bởi các quỹ đầu tư quốc tế khi đánh giá tiềm năng đầu tư tại Việt Nam. 
+                    Sự tăng trưởng và ổn định của VN30 góp phần thu hút dòng vốn nước ngoài vào thị trường chứng khoán Việt Nam.</p>
+                
+                <h2 id="section8">Các Sản Phẩm Đầu Tư Liên Quan Đến VN30</h2>
+                <h3>Quỹ ETF VN30</h3>
+                <p>Các quỹ ETF (Exchange Traded Fund) dựa trên VN30 cung cấp cho nhà đầu tư cơ hội tiếp cận danh mục 30 cổ phiếu hàng đầu mà không cần phải mua từng cổ phiếu riêng lẻ. 
+                    Điều này giúp đa dạng hóa đầu tư và giảm thiểu rủi ro.</p>
+                        
+                <h3>Hợp Đồng Tương Lai VN30</h3>
+                <p>Hợp đồng tương lai dựa trên VN30 cho phép các nhà đầu tư tham gia vào việc dự đoán xu hướng của chỉ số mà không cần phải sở hữu các cổ phiếu cơ sở. 
+                    Đây là công cụ phổ biến trong quản lý rủi ro và giao dịch phái sinh.</p>
+        
+                <h3>Quỹ Đầu Tư Chỉ Số</h3>
+                <p>Nhiều quỹ đầu tư sử dụng VN30 làm chỉ tiêu để xây dựng danh mục đầu tư, nhằm mục tiêu đạt được hiệu suất tương tự hoặc vượt trội so với chỉ số này.</p>
+
+                <h2 id="section9">Phân Tích Hiệu Suất</h2>
+                <h3>Lịch Sử Biến Động</h3>
+                <p>VN30 đã trải qua nhiều giai đoạn tăng trưởng mạnh mẽ cũng như những đợt điều chỉnh khi thị trường gặp khó khăn. 
+                    Từ những năm đầu của thị trường chứng khoán Việt Nam đến nay, VN30 đã chứng kiến sự phát triển đáng kể về giá trị và mức độ thanh khoản.</p>
+                        
+                <h3>Tỷ Suất Sinh Lời</h3>
+                <p>Tỷ suất sinh lời của VN30 thường phản ánh hiệu suất chung của thị trường chứng khoán Việt Nam. 
+                    Trong các năm tăng trưởng kinh tế mạnh, VN30 thường đạt mức tăng trưởng cao, trong khi trong những giai đoạn kinh tế khó khăn, chỉ số có thể giảm mạnh.</p>
+        
+                <h3>Độ Biến Động</h3>
+                <p>VN30 có độ biến động cao hơn so với các chỉ số toàn thị trường như VNINDEX do tập trung vào các cổ phiếu lớn và thanh khoản cao, thường phản ánh nhanh chóng các biến động kinh tế và thị trường.</p>
+            
+                <h2 id="section10">Ảnh Hưởng Của Các Yếu Tố Kinh Tế và Chính Trị</h2>
+                <h3>Chính Sách Kinh Tế</h3>
+                <p>Các chính sách kinh tế của Chính phủ Việt Nam, bao gồm chính sách tiền tệ, thuế, và quy định về thị trường chứng khoán, đều ảnh hưởng đến VN30. 
+                    Ví dụ, các chính sách thúc đẩy đầu tư và tăng trưởng kinh tế thường làm tăng giá cổ phiếu và nâng cao chỉ số VN30.</p>
+                            
+                <h3>Tình Hình Chính Trị</h3>
+                <p>Sự ổn định chính trị là yếu tố quan trọng ảnh hưởng đến niềm tin của nhà đầu tư. 
+                    Các biến động chính trị, như bầu cử, thay đổi chính phủ, hoặc bất ổn xã hội, có thể gây ra sự biến động lớn trên VN30.</p>
+            
+                <h3>Môi Trường Kinh Doanh Quốc Tế</h3>
+                <p>Sự thay đổi trong môi trường kinh doanh quốc tế, chẳng hạn như biến động tỷ giá, chiến tranh thương mại, hoặc biến động kinh tế toàn cầu, cũng có thể tác động đến VN30 thông qua ảnh hưởng đến các công ty xuất khẩu và đầu tư nước ngoài.</p>
+                
+                <h2 id="section11">Chiến Lược Đầu Tư Sử Dụng VN30</h2>
+                <h3>Đầu Tư Theo Chỉ Số</h3>
+                <p>Một chiến lược đầu tư phổ biến là mua và giữ các quỹ ETF dựa trên VN30, nhằm theo dõi hiệu suất của chỉ số này. 
+                    Đây là cách tiếp cận thụ động, giảm thiểu rủi ro thông qua đa dạng hóa danh mục đầu tư.</p>
+                            
+                <h3>Đầu Tư Chủ Động</h3>
+                <p>Nhà đầu tư chủ động có thể sử dụng VN30 như một thước đo để so sánh và điều chỉnh danh mục đầu tư của mình. 
+                    Ví dụ, nếu danh mục đầu tư của nhà đầu tư vượt trội hơn VN30, họ có thể tiếp tục giữ các cổ phiếu hiệu quả, hoặc ngược lại, điều chỉnh lại chiến lược đầu tư.</p>
+            
+                <h3>Giao Dịch Ngắn Hạn</h3>
+                <p>Sử dụng các sản phẩm phái sinh như hợp đồng tương lai VN30 để thực hiện các chiến lược giao dịch ngắn hạn, dựa trên dự đoán về xu hướng của chỉ số trong tương lai gần.</p>
+
+                <h2 id="section12">Rủi Ro Liên Quan Đến VN30</h2>
+                <h3>Rủi Ro Thị Trường</h3>
+                <p>Như mọi chỉ số chứng khoán, VN30 cũng chịu sự biến động của thị trường, có thể gây ra lợi nhuận không ổn định và thua lỗ cho nhà đầu tư.</p>
+                            
+                <h3>Rủi Ro Tập Trung</h3>
+                <p>Mặc dù VN30 bao gồm 30 cổ phiếu lớn, nhưng vẫn có khả năng tập trung vào một số ngành công nghiệp chính, làm tăng rủi ro nếu ngành đó gặp khó khăn.</p>
+            
+                <h3>Rủi Ro Chính Sách</h3>
+                <p>Thay đổi trong chính sách kinh tế hoặc quy định thị trường chứng khoán có thể ảnh hưởng đến hiệu suất của VN30.</p>
+
+                <h2 id="section13">Tương Lai Của VN30</h2>
+                <h3>Tiềm Năng Tăng Trưởng</h3>
+                <p>Với nền kinh tế Việt Nam tiếp tục phát triển mạnh mẽ, VN30 có tiềm năng tăng trưởng cao, đồng thời thu hút nhiều sự quan tâm từ nhà đầu tư trong và ngoài nước.</p>
+                            
+                <h3>Cải Tiến và Đổi Mới</h3>
+                <p>VN30 có thể tiếp tục được cải tiến về phương pháp tính toán và đa dạng hóa thành phần danh mục để phản ánh chính xác hơn sự phát triển của thị trường chứng khoán Việt Nam.</p>
+            
+                <h3>Ảnh Hưởng Của Công Nghệ</h3>
+                <p>Sự phát triển của công nghệ thông tin và tài chính sẽ ảnh hưởng đến cách VN30 được quản lý và giao dịch, đồng thời tạo ra nhiều cơ hội mới cho các sản phẩm đầu tư liên quan.</p>
+
+                <h2 id="section14">Kết Luận</h2>
+                <p>VN30 là một chỉ số chứng khoán quan trọng, phản ánh sức mạnh và sự phát triển của thị trường chứng khoán Việt Nam. 
+                    Với sự đa dạng hóa trong danh mục, phương pháp tính toán minh bạch, và tầm quan trọng trong việc định hướng đầu tư, 
+                    VN30 không chỉ là thước đo hiệu suất mà còn là công cụ hỗ trợ đắc lực cho các nhà đầu tư trong việc xây dựng chiến lược đầu tư hiệu quả. 
+                    Sự phát triển liên tục của VN30 và thị trường chứng khoán Việt Nam hứa hẹn mang lại nhiều cơ hội hấp dẫn cho các nhà đầu tư trong tương lai.</p>
+            </div>
+        </div>
+    </div>    
+    
+    <div class="footer">
+        <p>&copy; Phan Đức Trưởng - 09_ĐH_CNPM2</p>
+    </div>
+
+    <script src="static/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="static/css/styles.css">
+    <link rel="stylesheet" type="text/css" href="static/css/dudoan.css">
+    <link rel="icon" href="{{ url_for('static', filename='img/icon.png') }}" type="image/x-icon">
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <title>Dự đoán cổ phiếu</title>
+</head>
+<body>
+    <div class="logo">
+        <p><a href="{{ url_for('main.home') }}">
+            <img src="static/img/favicon.png" alt="Logo">
+        </a></p>
+    </div>
+    <div class="theme-toggle">
+        <i class="fas fa-moon"></i>
+    </div>
+    <div class="menu-toggle">
+        <i class="fas fa-bars"></i>
+    </div>
+
+    <div class="menu">
+        <div class="sub-menu">
+            <ul><a href="{{ url_for('main.home') }}"><i class="fas fa-home"></i></a></ul>
+            <ul><a href="{{ url_for('main.phantich') }}">PHÂN TÍCH</a></ul>
+            <ul><a href="{{ url_for('main.dudoan') }}">DỰ ĐOÁN</a></ul>
+            <div id="clock" class="clock"></div>
+        </div>
+    </div>
+
+    <div class="main">
+        <div id="prediction-form">
+            <label for="symbol">Mã cổ phiếu:</label>
+            <select id="symbol">
+                {% for symbol in stock_symbols %}
+                    <option value="{{ symbol }}">{{ symbol }}</option>
+                {% endfor %}
+            </select>
+            <label for="days">Số ngày dự đoán (từ 5 đến 10):</label>
+            <input type="number" id="days" value="5" min="5" max="10">
+            <div id="error-message" style="color: red; font-size: 14px;"></div>
+            <button onclick="getPrediction()">Dự đoán</button>
+        </div>
+
+        <div class="main-content">
+            <div class="box">
+                <div id="result" style="width: 100%;">
+                    <div class="loader" id="loader" style="display: none;">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                    <!-- Thay thế canvas bằng div cho Highcharts -->
+                    <div id="prediction-chart"></div>
+                </div>
+            </div>
+        </div>
+    </div>        
+    
+    <div class="footer">
+        <p>&copy; Phan Đức Trưởng - 09_ĐH_CNPM2</p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="static/main.js"></script>
+    <script src="static/chart_dudoan.js"></script>
+</body>
+</html>

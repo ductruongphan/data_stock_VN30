@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>Phân tích cổ phiếu</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/phantich.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='img/icon.png') }}" type="image/x-icon">
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/stock/highstock.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+    <div class="logo">
+        <a href="{{ url_for('main.home') }}">
+            <img src="{{ url_for('static', filename='img/favicon.png') }}" alt="Logo">
+        </a>
+    </div>
+
+    <div class="theme-toggle">
+        <i class="fas fa-moon"></i>
+    </div>
+
+    <!-- Menu Toggle -->
+    <div class="menu-toggle">
+        <i class="fas fa-bars"></i>
+    </div>
+
+    <div class="menu">
+        <div class="sub-menu">
+            <ul><a href="{{ url_for('main.home') }}"><i class="fas fa-home"></i></a></ul>
+            <ul><a href="{{ url_for('main.phantich') }}">PHÂN TÍCH</a></ul>
+            <ul><a href="{{ url_for('main.dudoan') }}">DỰ ĐOÁN</a></ul>
+            <div id="clock" class="clock"></div>
+        </div>
+    </div>
+
+    <!-- Search Form -->
+    <div class="search-bar">
+        <form id="stockForm" method="GET" action="{{ url_for('main.phantich') }}">
+            <label for="collection_name">Mã Chứng Khoán: </label>
+            <select id="collection_name" name="collection_name" onchange="this.form.submit()">
+                {% for symbol in stock_symbols %}
+                    <option value="{{ symbol }}" {% if symbol == selected_symbol %}selected{% endif %}>
+                        {{ symbol }}
+                    </option>
+                {% endfor %}
+            </select>
+            <br>
+            <label for="start_date">Ngày bắt đầu: </label>
+            <input type="date" id="start_date" name="start_date" value="{{ request.args.get('start_date', '') }}">
+            <br>
+            <label for="end_date">Ngày kết thúc: </label>
+            <input type="date" id="end_date" name="end_date" value="{{ request.args.get('end_date', '') }}">
+            <br>
+            <button type="submit">Xem</button>
+        </form>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="main">
+        <div class="main-content">
+            {% if latest_data %}
+                <div class="stock-info">
+                    <div id="clock" class="clock"></div>
+                    <h3>
+                        {% if latest_data['company_info']['MaCK'] != 'VN30INDEX' %}
+                            {{ latest_data['company_info']['MaCK'] }} - <span class="company-name">{{ latest_data['company_info']['TenCongTy'] }}</span>
+                        {% else %}
+                            {{ latest_data['company_info']['MaCK'] }}
+                        {% endif %}
+                    </h3>
+                    
+                    <h2 class="{% if latest_data['ThayDoi_GiaTri'] >= 0 %}positive{% else %}negative{% endif %}">
+                        {{ latest_data['GiaDongCua'] }}
+                        {% if latest_data['ThayDoi_GiaTri'] >= 0 %}
+                            &#9650; 
+                        {% else %}
+                            &#9660; 
+                        {% endif %}
+                    </h2>
+                    <div class="change">
+                        <span class="{% if latest_data['ThayDoi_GiaTri'] >= 0 %}positive{% else %}negative{% endif %}">
+                            {{ latest_data['ThayDoi_GiaTri'] }}
+                            ({{ latest_data['ThayDoi_PhanTram'] }}%)
+                        </span>
+                    </div>
+                    <div class="volume">
+                        <b>Khối lượng:</b> 
+                        <span class="{% if latest_data['ThayDoi_GiaTri'] >= 0 %}positive-value{% else %}negative-value{% endif %}">
+                            {{ latest_data['KhoiLuongKhopLenh'] }}
+                        </span>
+                    </div>
+                    <div class="details">
+                        <p style="color:#A9A9A9;">Đóng cửa</p>
+                        <hr style="border: 1px solid #E8E8E8; width: 100%; color: #E8E8E8;">
+                        <p class="price">
+                            <b>Giá tham chiếu:</b> 
+                            <span class="{% if latest_data['ThayDoi_GiaTri'] >= 0 %}positive-value{% else %}negative-value{% endif %}">
+                                {{ latest_data['GiaDieuChinh'] }}
+                            </span>
+                        </p>
+                        <p class="price">
+                            <b>Giá mở cửa:</b> 
+                            <span class="{% if latest_data['ThayDoi_GiaTri'] >= 0 %}positive-value{% else %}negative-value{% endif %}">
+                                {{ latest_data['GiaMoCua'] }}
+                            </span>
+                        </p>
+                        <p class="price">
+                            <b>Giá cao nhất:</b> 
+                            <span class="{% if latest_data['ThayDoi_GiaTri'] >= 0 %}positive-value{% else %}negative-value{% endif %}">
+                                {{ latest_data['GiaCaoNhat'] }}
+                            </span>
+                        </p>
+                        <p class="price">
+                            <b>Giá thấp nhất:</b> 
+                            <span class="{% if latest_data['ThayDoi_GiaTri'] >= 0 %}positive-value{% else %}negative-value{% endif %}">
+                                {{ latest_data['GiaThapNhat'] }}
+                            </span>
+                        </p>
+                        <p style="color: #A9A9A9;">Đơn vị giá: 1000 VNĐ</p>
+                        {% if macd_data and macd_data|length > 0 %}
+                            <div class="price">
+                                <b>MACD:</b> 
+                                <span class="{% if macd_data[-1]['MACD'] >= 0 %}positive-value{% else %}negative-value{% endif %}">
+                                    {{ macd_data[-1]['MACD'] }}
+                                </span>
+                            </div>
+                            <div class="price">
+                                <b>Signal:</b> 
+                                <span class="{% if macd_data[-1]['Signal'] >= 0 %}positive-value{% else %}negative-value{% endif %}">
+                                    {{ macd_data[-1]['Signal'] }}
+                                </span>
+                            </div>
+                        {% endif %}
+
+                        {% if rsi_data and rsi_data|length > 0 %}
+                            <div class="price">
+                                <b>RSI:</b> 
+                                <span class="
+                                    {% if rsi_data[-1]['RSI'] >= 70 %}
+                                        overbought
+                                    {% elif rsi_data[-1]['RSI'] <= 30 %}
+                                        oversold
+                                    {% else %}
+                                        neutral
+                                    {% endif %}
+                                ">
+                                    {{ rsi_data[-1]['RSI'] }}
+                                </span>
+                            </div>
+                        {% endif %}
+
+                    </div>                        
+                </div>
+            {% else %}
+                <p>Không có dữ liệu.</p>
+            {% endif %}            
+                                                                           
+            <!-- Price Chart -->
+            <div class="box2">
+                <div id="priceChart" class="chart-container"></div>
+            </div>
+            
+            <!-- Volume Chart -->
+            <div class="box3">
+                <div id="adjustedPriceChart" class="chart-container"></div>
+            </div>
+            
+            <!-- Adjusted Price Chart -->
+            <div class="box4">
+                <div id="volumeChart" class="chart-container"></div>
+            </div>
+            
+            <!-- Transaction Value Chart -->
+            <div class="box5">
+                <div id="transactionValueChart" class="chart-container"></div>
+            </div>
+            
+            <!-- Change Chart -->
+            <div class="box6">
+                <div id="changeChart" class="chart-container"></div>
+            </div>
+            
+            <!-- Close Price Chart -->
+            <div class="box7">
+                <div id="closePriceChart" class="chart-container"></div>
+            </div>
+            
+            <!-- Correlation Chart -->
+            <div class="box8">
+                <div id="correlationChart" class="chart-container"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; Phan Đức Trưởng - 09_ĐH_CNPM2</p>
+    </div>
+
+    <!-- Custom JavaScript (if any) -->
+    <script src="{{ url_for('static', filename='main.js') }}"></script>
+    <script src="{{ url_for('static', filename='chart_phantich.js') }}"></script>
+</body>
+</html>

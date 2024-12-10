@@ -1,0 +1,227 @@
+/* Reset và cơ bản */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'SF Pro Display', sans-serif;
+    transition: background-color 0.3s, color 0.3s;
+    background-color: #e1e0e0; 
+    color: #2d2b2b;
+}
+
+/* Chế độ dark mode */
+.dark-mode {
+    background-color: #2d2b2b;
+    color: #e0e0e0;
+}
+
+.dark-mode .main {
+    background-color: #3e3a3a;
+    color: #e0e0e0;
+}
+
+.dark-mode .main-content {
+    background-color: #666666;
+    color: #e0e0e0;
+}
+
+.dark-mode .theme-toggle {
+    color: #f0e68c;
+}
+
+/* Logo */
+.logo {
+    background-color: #e6f1f1;
+    padding: 5px 5px 0 10.5%;
+}
+
+.logo img {
+    max-width: 3%;
+    height: auto;
+}
+
+/* Menu */
+/* Menu */
+.menu {
+    background-color: #004370;
+    width: 100%;
+    padding: 0;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+/* Sub-menu */
+.sub-menu {
+    width: 100%;
+    display: flex;
+    padding: 0 10.5% 0 10.5%;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10;
+}
+
+.sub-menu a {
+    display: inline-flex;
+    align-items: center;
+    font-size: 14px;
+    color: #ffffff;
+}
+
+.sub-menu i {
+    padding: 10px;
+    font-size: 16px;
+    color: #ffffff;
+}
+
+.sub-menu ul, #clock {
+    margin: 0;
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+}
+
+#clock {
+    padding: 0 50px 0 250px;
+    font-size: 14px;
+    color: #ffffff;
+    white-space: nowrap;
+}
+
+.menu-toggle {
+    display: none;
+    cursor: pointer;
+    font-size: 24px;
+    color: #ffffff;
+    padding: 10px;
+}
+
+.menu.show {
+    display: flex;
+}
+
+ul {
+    list-style: none;
+    display: inline;
+    margin-right: 20px;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* Main */
+.main {
+    padding: 0 10.5%;
+    background-color: #e1e0e0;
+    box-shadow: 0 6px 15px rgba(226, 206, 206, 0.1);
+}
+
+.main-content {
+    display: flex;
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+    max-width: 1200px;
+    width: 100%;
+    z-index: 1;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: 0 auto;
+}
+
+/* Footer */
+.footer {
+    background-color: #9d9d9d;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    padding: 30px 0;
+}
+
+.footer a {
+    color: #ffffff;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+/* Theme Toggle */
+.theme-toggle {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 20px;
+    color: #000;
+    transition: color 0.3s;
+}
+
+/* Responsive */
+@media only screen and (max-width: 768px) {
+    .logo {
+        background-color: #e6f1f1;
+        padding: 0px;
+    }
+    
+    .logo img {
+        max-width: 10%;
+        height: auto;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .menu {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .menu a {
+        font-size: 14px;
+        padding: 10px;
+        text-align: center;
+        width: 100%;
+    }
+
+    .sub-menu {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 20px;
+    }
+    
+    .sub-menu ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+    }
+    
+    .sub-menu a {
+        color: #ffffff;
+        text-decoration: none;
+        padding: 0 10px;
+        font-size: 16px;
+    }
+    
+    #clock {
+        white-space: nowrap;
+        font-size: 14px;
+        color: #ffffff;
+        margin-left: auto;
+    }    
+
+    .main {
+        flex-direction: column;
+    }
+}
