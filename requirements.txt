@@ -1,0 +1,11 @@
+python-dotenv
+flask
+pymongo
+flask_pymongo
+numpy
+pandas
+scikit-learn
+tensorflow
+requests
+markupsafe
+flask_wtf
